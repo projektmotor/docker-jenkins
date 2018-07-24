@@ -2,6 +2,7 @@
 
 BASE_URL="https://download.docker.com/linux/static/stable/x86_64/"
 DIRECTORY_LISTING=$(curl -s ${BASE_URL} | awk 'BEGIN{ RS="<a *href *= *\""} NR>2 {sub(/".*/,"");print; }')
+DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m`"
 RELEASES=(${DIRECTORY_LISTING// / })
 CURRENT_RELEASE=${RELEASES[-1]}
 CURRENT_RELEASE_URL="${BASE_URL}${CURRENT_RELEASE}"
@@ -19,6 +20,14 @@ tar xzf "${TMP_DIR}/${CURRENT_RELEASE}"
 echo "Making binaries accessable ..."
 rm "${TMP_DIR}/docker/dockerd"
 cp "${TMP_DIR}/docker/docker" /usr/local/bin
+
+groupadd -g 999 docker
+usermod -a -G docker jenkins
+
+echo "Download docker-compose binary from ... ${DOCKER_COMPOSE_URL}"
+curl -s -L ${DOCKER_COMPOSE_URL} -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
 
 echo "Cleaning up ..."
 rm -rf ${TMP_DIR}
