@@ -38,7 +38,8 @@ do
         fi
 done
 
-CURRENT_RELEASE_URL="${BASE_URL}/docker-${MAJOR}.${MINOR}.${PATCH}.tgz"
+CURRENT_RELEASE="docker-${MAJOR}.${MINOR}.${PATCH}.tgz"
+CURRENT_RELEASE_URL="${BASE_URL}${CURRENT_RELEASE}"
 
 mkdir ${TMP_DIR}
 cd ${TMP_DIR}
