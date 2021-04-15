@@ -8,8 +8,6 @@ RUN apt-get -y update && \
     apt-get autoremove --yes && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN curl https://jenkins.intranet.projektmotor.de/jnlpJars/jenkins-cli.jar -o /var/jenkins_home/jenkins-cli.jar
-
 ENV TIME_ZONE=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime && echo ${TIME_ZONE} > /etc/timezone
 
