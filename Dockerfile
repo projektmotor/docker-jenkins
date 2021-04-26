@@ -3,7 +3,7 @@ FROM jenkins/jenkins:latest
 USER root
 
 RUN apt-get -y update && \
-    apt-get install -y rsync curl nc && \
+    apt-get install -y rsync curl netcat && \
     apt-get clean autoclean && \
     apt-get autoremove --yes && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/
