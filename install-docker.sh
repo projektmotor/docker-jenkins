@@ -54,7 +54,7 @@ echo "Making binaries accessable ..."
 rm "${TMP_DIR}/docker/dockerd"
 cp "${TMP_DIR}/docker/docker" /usr/local/bin
 
-groupadd -g 999 docker
+groupadd -g 998 docker
 usermod -a -G docker jenkins
 
 echo "Download docker-compose binary from ... ${DOCKER_COMPOSE_URL}"
