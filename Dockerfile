@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:latest
+FROM jenkins/jenkins:latest-jdk25
 
 USER root
 
